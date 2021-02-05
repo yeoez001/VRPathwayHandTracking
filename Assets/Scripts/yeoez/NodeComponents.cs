@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿/**
+ * Information components related to a metabolite. 
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PokeChild : MonoBehaviour
+public class NodeComponents : MonoBehaviour
 {
     public TextMesh nodeLabel;
     public GameObject image;
@@ -21,7 +26,6 @@ public class PokeChild : MonoBehaviour
             ShowScatterplot(active);
         } 
     }
-
 
     [PunRPC]
     void SetNodeText(string text)
@@ -60,7 +64,7 @@ public class PokeChild : MonoBehaviour
         {
             SpriteRenderer spriteRenderer = scatterplot.GetComponentInChildren<SpriteRenderer>();
             spriteRenderer.sprite = loadedImage;
-            //scatterplot.transform.localPosition = new Vector3(0.2396f, -0.0185f, 0.2316f);
+            scatterplot.transform.localPosition = new Vector3(0.2665f, -0.033f, 0.1514f);
         }
     }
 

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/**
+ * The player's hand on the network. Sets the hand to attach to the correct hand anchor.  
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -28,20 +33,6 @@ public class NetworkHand : MonoBehaviour
             this.transform.SetParent(playerLocal);
             this.transform.localPosition = Vector3.zero;
             this.transform.localRotation = Quaternion.identity;
-        }
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(playerLocal.position);
-            stream.SendNext(playerLocal.rotation);
-        }
-        else
-        {
-            this.transform.position = (Vector3)stream.ReceiveNext();
-            this.transform.rotation = (Quaternion)stream.ReceiveNext();
         }
     }
 }

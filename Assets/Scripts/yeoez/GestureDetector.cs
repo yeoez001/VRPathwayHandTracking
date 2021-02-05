@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/**
+ * Detects the pinch and fold state of each finger to determine the overall hand gesture of an OVRHand. 
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;

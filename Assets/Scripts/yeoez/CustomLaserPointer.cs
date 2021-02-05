@@ -1,4 +1,9 @@
-﻿using System.Collections.Generic;
+﻿/**
+ * Projects a laser pointer from the finger tip of the index finger of the hand. 
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.IO;
@@ -79,8 +84,7 @@ public class CustomLaserPointer : MonoBehaviour
     }
 
     public void ShowLaser(bool active)
-    {
-        //photonView.RPC("SetActiveState", RpcTarget.AllBuffered, active);        
+    {  
         if (active)
         {
             ShootLaser();
@@ -89,19 +93,6 @@ public class CustomLaserPointer : MonoBehaviour
         {
             // Collider remains active when gameObject is active which is undesired. Instead, move the laser to another location.
             transform.position = new Vector3(-9999f, -9999f, -9999f);
-        }
-    }
-
-    [PunRPC]
-    void SetActiveState(bool active)
-    {        
-        if (active)
-        {
-            ShootLaser();
-        } else
-        {
-            // Collider remains active when gameObject is active which is undesired. Instead, move the laser to another location.
-            transform.position = new Vector3(int.MinValue, int.MinValue, int.MinValue);
         }
     }
 }

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/**
+ * An object that can be grabbed by an OVRGrabber. Changes colour to blue when it is within grabbing proximity
+ * of a grabber. Changes colour to green when object is being grabbed. Changes colour to yellow when it is pointed
+ * to by a laser pointer. 
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;

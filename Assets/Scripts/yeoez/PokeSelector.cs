@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/**
+ * Selector that triggers only when the hand pokes the selector with a pointing gesture. 
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

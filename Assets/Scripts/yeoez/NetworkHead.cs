@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/**
+ * The player's head on the network.  Sets the head to the correct eye anchor. 
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using UnityEngine;
 using System.Collections;
 using Photon.Pun;
 public class NetworkHead : MonoBehaviour
@@ -10,13 +15,9 @@ public class NetworkHead : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("i'm instantiated");
-
         var photonView = GetComponent<PhotonView>();
         if (photonView.IsMine)
         {
-            Debug.Log("player is mine");
-
             playerGlobal = GameObject.Find("OVRPlayerController").transform;
             playerLocal = playerGlobal.Find("OVRCameraRig/TrackingSpace/CenterEyeAnchor");
 
@@ -25,24 +26,6 @@ public class NetworkHead : MonoBehaviour
             this.transform.localPosition = Vector3.zero;
 
             avatar.SetActive(false);
-        }
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(playerLocal.position);
-            stream.SendNext(playerLocal.rotation);
-            stream.SendNext(playerLocal.position);
-            stream.SendNext(playerLocal.rotation);
-        }
-        else
-        {
-            this.transform.position = (Vector3)stream.ReceiveNext();
-            this.transform.rotation = (Quaternion)stream.ReceiveNext();
-            avatar.transform.position = (Vector3)stream.ReceiveNext();
-            avatar.transform.rotation = (Quaternion)stream.ReceiveNext();
         }
     }
 }

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/**
+ * Connects the application to the Photon network and connects players to a room with their avatar head and hands. 
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -16,7 +21,7 @@ public class Network : MonoBehaviourPunCallbacks
     public static event Action OnExistingRoomJoined;
     public static event Action OnPlayersChanged;
 
-    private string room = "VRMeetup";
+    private string room = "VRPathway";
     private string gameVersion = "0.1";
 
     private bool m_createdRoom = false;
@@ -47,16 +52,9 @@ public class Network : MonoBehaviourPunCallbacks
         Debug.Log("Connected to master!");
         Debug.Log("Joining room...");
 
-        //PhotonNetwork.JoinRandomRoom();
         PhotonNetwork.JoinRoom(room);
 
     }
-
-    public override void OnDisconnected(DisconnectCause cause)
-    {
-        Debug.LogWarningFormat("Disconnected with reason {0}", cause);
-    }
-
 
     public override void OnJoinedRoom()
     {
@@ -142,8 +140,6 @@ public class Network : MonoBehaviourPunCallbacks
         {
             props.Add(key, newValue);
         }
-        //ExitGames.Client.Photon.Hashtable newProps = new ExitGames.Client.Photon.Hashtable(1) { { key, newValue } };
-        //Hashtable oldProps = new Hashtable(1) { { key, room.CustomProperties[key] } };
         return room.LoadBalancingClient.OpSetCustomPropertiesOfRoom(props/*, oldProps, webFlags);*/);
     }
 

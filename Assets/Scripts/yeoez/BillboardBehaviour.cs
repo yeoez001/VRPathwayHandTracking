@@ -7,7 +7,6 @@ public class BillboardBehaviour : MonoBehaviour {
     private GameObject hmdCamera;
     private NetworkHead[] heads;
 
-    // Use this for initialization
     void Start()
     {
         heads = transform.root.GetComponentsInChildren<NetworkHead>();
@@ -25,7 +24,6 @@ public class BillboardBehaviour : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
     void Update () {
         
         Vector3 v = transform.position - hmdCamera.transform.position;

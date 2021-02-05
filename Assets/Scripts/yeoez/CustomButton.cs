@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/**
+ * Tactile button that invokes an event on press.
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using UnityEngine;
 using UnityEngine.Events;
 
 public class CustomButton : MonoBehaviour
@@ -31,13 +36,11 @@ public class CustomButton : MonoBehaviour
             if (!pressed)
             {
                 pressed = true;
-                // If we have an event, invoke it
                 downEvent?.Invoke();
             }
         }
         else
         {
-            // If we aren't all the way down, reset our press
             pressed = false;
         }
         // Prevent button from springing back up past its original position

@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/**
+ * Used on OVRHand prefab. Detects hand gestures and performs grab, release, throw
+ * and laser pointer interactions accordingly. 
+ * Author: Elyssa Yeo
+ * Date: 5 Jan 2021
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -93,7 +99,7 @@ public class CustomGrabber : OVRGrabber
             for (int j = 0; j < grabbable.grabPoints.Length; ++j)
             {
                 Collider grabbableCollider = grabbable.grabPoints[j];
-                // Store the closest grabbable
+
                 Vector3 closestPointOnBounds = grabbableCollider.ClosestPointOnBounds(m_gripTransform.position);
                 float grabbableMagSq = (m_gripTransform.position - closestPointOnBounds).sqrMagnitude;
                 if (grabbableMagSq < closestMagSq)
@@ -105,7 +111,6 @@ public class CustomGrabber : OVRGrabber
             }
         }
 
-        // Disable grab volumes to prevent overlaps
         GrabVolumeEnable(false);
 
         if (closestGrabbable != null)
@@ -144,7 +149,6 @@ public class CustomGrabber : OVRGrabber
             m_lastPos = transform.position;
             m_lastRot = transform.rotation;
 
-            // Set up offsets for grabbed object desired position relative to hand.
             if (m_grabbedObj.snapPosition)
             {
                 m_grabbedObjectPosOff = m_gripTransform.localPosition;
@@ -175,14 +179,7 @@ public class CustomGrabber : OVRGrabber
                 Quaternion relOri = Quaternion.Inverse(transform.rotation) * m_grabbedObj.transform.rotation;
                 m_grabbedObjectRotOff = relOri;
             }
-
-            // NOTE: force teleport on grab, to avoid high-speed travel to dest which hits a lot of other objects at high
-            // speed and sends them flying. The grabbed object may still teleport inside of other objects, but fixing that
-            // is beyond the scope of this demo.
             MoveGrabbedObject(m_lastPos, m_lastRot, true);
-
-            // NOTE: This is to get around having to setup collision layers, but in your own project you might
-            // choose to remove this line in favor of your own collision layer setup.
             SetPlayerIgnoreCollision(m_grabbedObj.gameObject, true);
 
             if (m_parentHeldObject)
